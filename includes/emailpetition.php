@@ -34,9 +34,16 @@ function dk_speakup_emailpetition_shortcode( $attr ) {
 	$wpml     = new dk_speakup_WPML();
 	$options  = get_option( 'dk_speakup_options' );
 
-	if(file_exists(get_stylesheet_directory('stylesheet_directory').'/speakup-email-petitions/dk_speakup_emailpetition_shortcode.php'))
+
+	//If specific template exists for petition id, we load it
+	if( isset( $attr['id'] ) && is_numeric( $attr['id'] ) and file_exists(get_stylesheet_directory('stylesheet_directory').'/speakup-email-petitions/template-'.$attr['id'].'.php'))
 	{
-		include_once get_stylesheet_directory('stylesheet_directory').'/speakup-email-petitions/dk_speakup_emailpetition_shortcode.php';
+		include_once get_stylesheet_directory('stylesheet_directory').'/speakup-email-petitions/template-'.$attr['id'].'.php';
+	}
+	//If generic template exists for speakup petitions, we load it
+	elseif(file_exists(get_stylesheet_directory('stylesheet_directory').'/speakup-email-petitions/template.php'))
+	{
+		include_once get_stylesheet_directory('stylesheet_directory').'/speakup-email-petitions/template.php';
 	}
 	else
 	{
