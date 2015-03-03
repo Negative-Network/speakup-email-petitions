@@ -289,7 +289,7 @@ function dk_speakup_public_css_js( $posts ) {
 						wp_enqueue_style( 'dk_speakup_css', $child_petition_theme_url );
 					}
 					// else try to load style from parent theme folder
-					else {
+					elseif ( file_exists( $parent_petition_theme_url ) ) {
 						wp_enqueue_style( 'dk_speakup_css', $parent_petition_theme_url );
 					}
 				}
