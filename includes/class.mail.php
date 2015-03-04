@@ -38,7 +38,41 @@ class dk_speakup_Mail
 		$headers = "From: " . $options['confirm_email'] . "\r\n";
 
 		// send the confirmation email
+		add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
 		self::send( $email, $subject, $message, $headers );
+		add_filter('wp_mail_content_type',create_function('', 'return "text/plain"; '));
+	}
+
+	/**
+	 * Sends subscriber email
+	 *
+	 * @param object $petition the petition being signed
+	 * @param object $signature the signature
+	 * @param array $options custom wp_options for this plugin
+	 */
+	public static function send_subscriber( $petition, $signature, $options )
+	{
+		$email   = stripslashes( $signature->email );
+		$subject = stripslashes( $petition->user_subject );
+		$message = stripslashes( $petition->user_html );
+		$message_text = stripslashes( $petition->user_text );
+
+		// construct confirmation URL
+		$lang = isset( $_POST['lang'] ) ? $_POST['lang'] : ''; // WPML
+
+		// replace user-supplied variables
+		$search  = array( '%first_name%', '%last_name%', '%petition_title%' );
+		$replace = array( $signature->first_name, $signature->last_name, $petition->title );
+		$message = stripslashes( str_replace( $search, $replace, $message ) );
+		$message_text = stripslashes( str_replace( $search, $replace, $message_text ) );
+
+		// construct email headers
+		$headers = "From: " . $petition->user_sender_email . "\r\n";
+
+		// send the confirmation email
+		add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
+		self::send( $email, $subject, $message, $headers );
+		add_filter('wp_mail_content_type',create_function('', 'return "text/plain"; '));
 	}
 
 	/**
@@ -75,7 +109,9 @@ class dk_speakup_Mail
 		$headers = "From: " . stripslashes( $signature->first_name ) . " " . stripslashes( $signature->last_name ) . " <" . $signature->email . ">" . "\r\n";
 
 		// send the petition email
+		add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
 		self::send( $petition->target_email, $subject, $email_message, $headers );
+		add_filter('wp_mail_content_type',create_function('', 'return "text/plain"; '));
 	}
 
 	//********************************************************************************

@@ -13,10 +13,30 @@ function dk_speakup_signaturescount_shortcode( $attr ) {
 	
 	$petition_exists = $petition->retrieve( $id );
 	if ( $petition_exists ) {
-		return $petition->signatures;
+		return (int) $petition->signatures;
 	}
 	else {
-		return '';
+		return 0;
+	}
+}
+
+// register shortcode to display petition signatures goal
+add_shortcode( 'petitiongoal', 'dk_speakup_petitiongoal_shortcode' );
+function dk_speakup_petitiongoal_shortcode( $attr ) {
+	include_once( 'class.petition.php' );
+	$petition = new dk_speakup_Petition();
+
+	$id = 1; // default
+	if ( isset( $attr['id'] ) && is_numeric( $attr['id'] ) ) {
+		$id = $attr['id'];
+	}
+	
+	$petition_exists = $petition->retrieve( $id );
+	if ( $petition_exists ) {
+		return (int) $petition->goal;
+	}
+	else {
+		return 0;
 	}
 }
 

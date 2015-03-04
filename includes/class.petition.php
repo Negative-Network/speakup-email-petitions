@@ -28,6 +28,14 @@ class dk_speakup_Petition
 	public $optin_label;
 	public $signatures;
 
+	public $petition_before_form;
+	public $petition_after_form;
+	public $user_send_email;
+	public $user_sender_email;
+	public $user_subject;
+	public $user_text;
+	public $user_html;
+
 	/**
 	 * Retrieves a selection of petition records from the database
 	 * 
@@ -100,7 +108,14 @@ class dk_speakup_Petition
 			'custom_field_label'    => $this->custom_field_label,
 			'displays_optin'        => $this->displays_optin,
 			'optin_label'           => $this->optin_label,
-			'is_editable'           => $this->is_editable
+			'is_editable'           => $this->is_editable,
+			'petition_before_form'  => $this->petition_before_form,
+			'petition_after_form'   => $this->petition_after_form,
+			'user_send_email'       => $this->user_send_email,
+			'user_sender_email'     => $this->user_sender_email,
+			'user_subject'          => $this->user_subject,
+			'user_text'          	=> $this->user_text,
+			'user_html'          	=> $this->user_html,
 		);
 
 		$format = array( '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s', '%s', '%d', '%d', '%s', '%d', '%d', '%s', '%d', '%s', '%d' );
@@ -207,6 +222,23 @@ class dk_speakup_Petition
 			$this->twitter_message = $_POST['twitter_message'];
 		}
 
+		// Petition Subscriber Box
+		if ( isset( $_POST['user_send_email'] ) ) {
+			$this->user_send_email = true;
+		}
+		if ( isset( $_POST['user_sender_email'] ) ) {
+			$this->user_sender_email = $_POST['user_sender_email'];
+		}
+		if ( isset( $_POST['user_subject'] ) ) {
+			$this->user_subject = $_POST['user_subject'];
+		}
+		if ( isset( $_POST['user_html'] ) ) {
+			$this->user_html = $_POST['user_html'];
+		}
+		if ( isset( $_POST['user_text'] ) ) {
+			$this->user_text = $_POST['user_text'];
+		}
+
 		// Petition Options Box
 		if ( isset( $_POST['requires_confirmation'] ) ) {
 			$this->requires_confirmation = 1;
@@ -229,6 +261,10 @@ class dk_speakup_Petition
 		if ( isset( $_POST['expires'] ) ) {
 			$this->expires = 1;
 			$this->_set_expiration_date();
+		}
+		else
+		{
+			$this->expiration_date = '1900-01-01 00:00:00';
 		}
 
 		// Display Options Box
@@ -261,6 +297,12 @@ class dk_speakup_Petition
 		}
 		if ( isset( $_POST['optin-label'] ) ) {
 			$this->optin_label = $_POST['optin-label'];
+		}
+		if ( isset( $_POST['petition_before_form'] ) ) {
+			$this->petition_before_form = $_POST['petition_before_form'];
+		}
+		if ( isset( $_POST['petition_after_form'] ) ) {
+			$this->petition_after_form = $_POST['petition_after_form'];
 		}
 	}
 
@@ -340,7 +382,14 @@ class dk_speakup_Petition
 			 'optin_label'           => $this->optin_label,
 			 'displays_custom_field' => $this->displays_custom_field,
 			 'custom_field_label'    => $this->custom_field_label,
-			 'is_editable'           => $this->is_editable
+			 'is_editable'           => $this->is_editable,
+			 'petition_before_form'  => $this->petition_before_form,
+			 'petition_after_form'   => $this->petition_after_form,
+			 'user_send_email'       => $this->user_send_email,
+			 'user_sender_email'     => $this->user_sender_email,
+			 'user_subject'          => $this->user_subject,
+			 'user_text'          	 => $this->user_text,
+			 'user_html'          	 => $this->user_html,
 		);
 		$where = array( 'id' => $id );
 
@@ -379,6 +428,14 @@ class dk_speakup_Petition
 		$this->optin_label           = $petition->optin_label;
 		$this->signatures            = $petition->signatures;
 		$this->is_editable           = $petition->is_editable;
+
+		$this->petition_before_form  = $petition->petition_before_form;
+		$this->petition_after_form   = $petition->petition_after_form;
+		$this->user_send_email       = $petition->user_send_email;
+		$this->user_sender_email     = $petition->user_sender_email;
+		$this->user_subject          = $petition->user_subject;
+		$this->user_text          	 = $petition->user_text;
+		$this->user_html          	 = $petition->user_html;
 	}
 
 	/**

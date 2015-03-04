@@ -57,7 +57,7 @@
 <div id="poststuff">
 
 	<div id="post-body" class="metabox-holder columns-2">
-		<div id="post-body-content">
+		<div id="post-body-content" class="postbox-container">
 
 			<div id="titlediv">
 				<div id="titlewrap">
@@ -66,9 +66,11 @@
 				</div>
 			</div>
 
-			<div class="postbox">
+			<br/>
+
+			<div class="postbox closed">
 				<div class="handlediv" title="Click to toggle"><br /></div>
-				<h3 class='hndle'><?php _e( 'Petition', 'dk_speakup' ); ?></h3>
+				<h3 class='hndle'><?php _e( 'Message for petition target(s)', 'dk_speakup' ); ?></h3>
 				<div class="inside">
 					<div class="dk-speakup-checkbox sends_email">
 						<input type="checkbox" name="sends_email" id="sends_email" <?php if ( $petition->sends_email == '0' ) echo 'checked="checked"'; ?> />
@@ -76,7 +78,7 @@
 					</div>
 					<div class="dk-speakup-petition-content">
 						<div class="dk-speakup-email-headers">
-							<label for="target_email"><?php _e( 'Target Email', 'dk_speakup' ); ?></label>
+							<label for="target_email"><?php _e( 'Target(s) Email(s)', 'dk_speakup' ); ?> <small><?php _e( 'Separate emails with ;', 'dk_speakup' ); ?></small></label>
 							<input name="target_email" id="target_email" value="<?php echo esc_attr( $petition->target_email ); ?>" size="40" maxlength="300" type="text" />
 
 							<label for="email_subject"><?php _e( 'Email Subject', 'dk_speakup' ); ?></label>
@@ -92,12 +94,41 @@
 				</div>
 			</div>
 
-			<div class="postbox">
+			<div class="postbox closed">
 				<div class="handlediv" title="Click to toggle"><br /></div>
 				<h3 class='hndle'><?php _e( 'Twitter Message', 'dk_speakup' ); ?></h3>
 				<div class="inside">
 					<textarea name="twitter_message" id="twitter_message" rows="2" cols="80"><?php echo stripslashes ( esc_textarea( $petition->twitter_message ) ); ?></textarea>
 					<div id="twitter-counter"></div>
+				</div>
+			</div>
+
+
+			<div class="postbox closed">
+				<div class="handlediv" title="Click to toggle"><br /></div>
+				<h3 class='hndle'><?php _e( 'Message for petition subscribers', 'dk_speakup' ); ?></h3>
+				<div class="inside">
+					<div class="dk-speakup-checkbox sends_email">
+						<input type="checkbox" name="user_send_email" id="user_send_email" <?php if ( $petition->user_send_email == true ) echo 'checked="checked"'; ?> />
+						<label for="user_send_email" class="dk-speakup-inline"><?php _e( 'Send an email to people who sign the petition', 'dk_speakup' ); ?></label>
+					</div>
+					<div class="dk-speakup-petition-content">
+
+						<label for="user_sender_email"><?php _e( 'Sender Email', 'dk_speakup' ); ?></label>
+						<input name="user_sender_email" id="user_sender_email" value="<?php echo esc_attr( $petition->user_sender_email ); ?>" size="40" maxlength="300" type="text" />
+
+
+						<div class="dk-speakup-email-headers">
+							<label for="user_subject"><?php _e( 'Email Subject', 'dk_speakup' ); ?></label>
+							<input name="user_subject" id="user_subject" value="<?php echo stripslashes( esc_attr( $petition->user_subject ) ); ?>" size="40" maxlength="80" type="text" />
+						</div>
+					</div>
+
+					<label for="user_html"><?php _e( 'HTML Message', 'dk_speakup' ); ?></label>
+					<textarea name="user_html" id="user_html" rows="10" cols="80"><?php echo stripslashes( esc_textarea( $petition->user_html ) ); ?></textarea>
+
+<!-- 					<label for="user_text"><?php _e( 'Text Message', 'dk_speakup' ); ?></label>
+					<textarea name="user_text" id="user_text" rows="10" cols="80"><?php echo stripslashes( esc_textarea( $petition->user_text ) ); ?></textarea> -->
 				</div>
 			</div>
 
@@ -229,7 +260,7 @@
 						</div>
 
 						<!-- Email Opt-in -->
-						<div class="misc-pub-section misc-pub-section-last">
+						<div class="misc-pub-section">
 							<div class="dk-speakup-checkbox">
 								<input type="checkbox" name="displays-optin" id="displays-optin" <?php if ( $petition->displays_optin == '1' ) echo 'checked="checked"'; ?> />
 								<label for="displays-optin" class="dk-speakup-inline"><?php _e( 'Display opt-in checkbox', 'dk_speakup'); ?></label>
@@ -237,6 +268,18 @@
 							<div class="dk-speakup-optin dk-speakup-subsection <?php if ( $petition->displays_optin != '1' ) echo 'dk-speakup-hidden'; ?>">
 								<label for="optin-label"><?php _e( 'Label', 'dk_speakup'); ?>:</label>
 								<input id="optin-label" name="optin-label" value="<?php echo stripslashes( esc_attr( $petition->optin_label ) ); ?>" size="30" maxlength="200" type="text" />
+							</div>
+						</div>
+
+
+						<div class="misc-pub-section misc-pub-section-last">
+							<div class="dk-speakup-subsection">
+								<label for="petition_before_form"><?php _e( 'Text to display before petition form', 'dk_speakup'); ?>:</label>
+								<textarea name="petition_before_form" id="petition_before_form" rows="3" cols="80"><?php echo stripslashes( esc_textarea( $petition->petition_before_form ) ); ?></textarea>
+							</div>
+							<div class="dk-speakup-subsection">
+								<label for="petition_after_form"><?php _e( 'Text to display after petition form', 'dk_speakup'); ?>:</label>
+								<textarea name="petition_after_form" id="petition_after_form" rows="3" cols="80"><?php echo stripslashes( esc_textarea( $petition->petition_after_form ) ); ?></textarea>
 							</div>
 						</div>
 

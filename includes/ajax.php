@@ -40,6 +40,7 @@ function dk_speakup_sendmail() {
 			$the_signature->custom_message = trim( $the_signature->submitted_message );
 		}
 
+
 		// does petition require email confirmation?
 		if ( $the_petition->requires_confirmation ) {
 			$the_signature->is_confirmed = 0;
@@ -49,6 +50,10 @@ function dk_speakup_sendmail() {
 		else {
 			if ( $the_petition->sends_email ) {
 				dk_speakup_Mail::send_petition( $the_petition, $the_signature );
+			}
+
+			if ( $the_petition->user_send_email ) {
+				dk_speakup_Mail::send_subscriber( $the_petition, $the_signature, $options );
 			}
 		}
 
