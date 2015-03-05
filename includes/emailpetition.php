@@ -58,12 +58,12 @@ function dk_speakup_emailpetition_shortcode( $attr ) {
 	//If specific template exists for petition id, we load it
 	if( isset( $attr['id'] ) && is_numeric( $attr['id'] ) and file_exists(get_stylesheet_directory('stylesheet_directory').'/speakup-email-petitions/template-'.$attr['id'].'.php'))
 	{
-		include_once get_stylesheet_directory('stylesheet_directory').'/speakup-email-petitions/template-'.$attr['id'].'.php';
+		$petition_form = include get_stylesheet_directory('stylesheet_directory').'/speakup-email-petitions/template-'.$attr['id'].'.php';
 	}
 	//If generic template exists for speakup petitions, we load it
 	elseif(file_exists(get_stylesheet_directory('stylesheet_directory').'/speakup-email-petitions/template.php'))
 	{
-		include_once get_stylesheet_directory('stylesheet_directory').'/speakup-email-petitions/template.php';
+		$petition_form = include get_stylesheet_directory('stylesheet_directory').'/speakup-email-petitions/template.php';
 	}
 	else
 	{
