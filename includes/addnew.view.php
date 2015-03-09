@@ -132,6 +132,32 @@
 				</div>
 			</div>
 
+			<div class="postbox closed">
+				<div class="handlediv" title="Click to toggle"><br /></div>
+				<h3 class='hndle'><?php _e( 'Petition sharing option', 'dk_speakup' ); ?></h3>
+				<div class="inside">
+
+					<label for="share_fb_img"><?php _e( 'Facebook image url', 'dk_speakup' ); ?></label>
+					<input name="share_fb_img" id="share_fb_img" value="<?php echo stripslashes( esc_textarea( $petition->share_fb_img ) ); ?>" />
+
+					<label for="share_fb_title"><?php _e( 'Facebook title (255 characters max)', 'dk_speakup' ); ?></label>
+					<input name="share_fb_title" id="share_fb_title" maxlength="255" value="<?php echo stripslashes( esc_textarea( $petition->share_fb_title ) ); ?>" />
+
+					<label for="share_fb_desc"><?php _e( 'Facebook description (300 characters max)', 'dk_speakup' ); ?></label>
+					<textarea name="share_fb_desc" id="share_fb_desc" maxlength="300" rows="5" cols="80"><?php echo stripslashes( esc_textarea( $petition->share_fb_desc ) ); ?></textarea>
+
+					<label for="share_twitter"><?php _e( 'Twitter sharing message (160 characters max)', 'dk_speakup' ); ?></label>
+					<textarea name="share_twitter" id="share_twitter" maxlength="160" rows="5" cols="80"><?php echo stripslashes( esc_textarea( $petition->share_twitter ) ); ?></textarea>
+
+					<label for="share_email_subject"><?php _e( 'Email sharing subject  (160 characters max)', 'dk_speakup' ); ?></label>
+					<input name="share_email_subject" id="share_email_subject" maxlength="160" value="<?php echo stripslashes( esc_textarea( $petition->share_email_subject ) ); ?>" />
+
+					<label for="share_email_body"><?php _e( 'Email sharing body  (1900 characters max)', 'dk_speakup'  ); ?></label>
+					<textarea name="share_email_body" id="share_email_body" maxlength="1900" rows="10" cols="80"><?php echo stripslashes( esc_textarea( $petition->share_email_body ) ); ?></textarea>
+
+				</div>
+			</div>
+
 		</div>
 
 

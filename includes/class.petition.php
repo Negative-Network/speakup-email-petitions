@@ -36,6 +36,13 @@ class dk_speakup_Petition
 	public $user_text;
 	public $user_html;
 
+	public $share_fb_img;
+	public $share_fb_title;
+	public $share_fb_desc;
+	public $share_twitter;
+	public $share_email_subject;
+	public $share_email_body;
+
 	/**
 	 * Retrieves a selection of petition records from the database
 	 * 
@@ -239,6 +246,26 @@ class dk_speakup_Petition
 			$this->user_text = $_POST['user_text'];
 		}
 
+		// Petition Sharing Box
+		if ( isset( $_POST['share_fb_img'] ) ) {
+			$this->share_fb_img = $_POST['share_fb_img'];
+		}
+		if ( isset( $_POST['share_fb_title'] ) ) {
+			$this->share_fb_title = $_POST['share_fb_title'];
+		}
+		if ( isset( $_POST['share_fb_desc'] ) ) {
+			$this->share_fb_desc = $_POST['share_fb_desc'];
+		}
+		if ( isset( $_POST['share_twitter'] ) ) {
+			$this->share_twitter = $_POST['share_twitter'];
+		}
+		if ( isset( $_POST['share_email_subject'] ) ) {
+			$this->share_email_subject = $_POST['share_email_subject'];
+		}
+		if ( isset( $_POST['share_email_body'] ) ) {
+			$this->share_email_body = $_POST['share_email_body'];
+		}
+
 		// Petition Options Box
 		if ( isset( $_POST['requires_confirmation'] ) ) {
 			$this->requires_confirmation = 1;
@@ -390,6 +417,15 @@ class dk_speakup_Petition
 			 'user_subject'          => $this->user_subject,
 			 'user_text'          	 => $this->user_text,
 			 'user_html'          	 => $this->user_html,
+
+
+			'share_fb_img'			 => $this->share_fb_img,
+			'share_fb_title'		 => $this->share_fb_title,
+			'share_fb_desc'		 	 => $this->share_fb_desc,
+			'share_twitter'		 	 => $this->share_twitter,
+			'share_email_subject'	 => $this->share_email_subject,
+			'share_email_body'		 => $this->share_email_body,
+
 		);
 		$where = array( 'id' => $id );
 
@@ -436,6 +472,13 @@ class dk_speakup_Petition
 		$this->user_subject          = $petition->user_subject;
 		$this->user_text          	 = $petition->user_text;
 		$this->user_html          	 = $petition->user_html;
+
+		$this->share_fb_img			 = $petition->share_fb_img;
+		$this->share_fb_title		 = $petition->share_fb_title;
+		$this->share_fb_desc		 = $petition->share_fb_desc;
+		$this->share_twitter		 = $petition->share_twitter;
+		$this->share_email_subject	 = $petition->share_email_subject;
+		$this->share_email_body		 = $petition->share_email_body;
 	}
 
 	/**
