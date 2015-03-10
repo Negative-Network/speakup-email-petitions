@@ -70,14 +70,12 @@
 
 			<div class="postbox closed">
 				<div class="handlediv" title="Click to toggle"><br /></div>
-				<h3 class='hndle'><?php _e( 'Message for petition target(s)', 'dk_speakup' ); ?></h3>
+				<h3 class='hndle'><?php _e( 'Email for petition target(s)', 'dk_speakup' ); ?></h3>
 				<div class="inside">
 					<div class="dk-speakup-checkbox sends_email">
 						<input type="checkbox" name="sends_email" id="sends_email" <?php if ( $petition->sends_email == '0' ) echo 'checked="checked"'; ?> />
 						<label for="sends_email" class="dk-speakup-inline"><?php _e( 'Do not send email (only collect signatures)', 'dk_speakup' ); ?></label>
 					</div>
-					<div class="dk-speakup-petition-content">
-						<div class="dk-speakup-email-headers">
 							<label for="target_email"><?php _e( 'Target(s) Email(s)', 'dk_speakup' ); ?> <small><?php _e( 'Separate emails with ;', 'dk_speakup' ); ?></small></label>
 							<input name="target_email" id="target_email" value="<?php echo esc_attr( $petition->target_email ); ?>" size="40" maxlength="300" type="text" />
 
@@ -86,43 +84,38 @@
 
 							<label for="greeting"><?php _e( 'Greeting', 'dk_speakup' ); ?></label>
 							<input name="greeting" id="greeting" value="<?php echo stripslashes( esc_attr( $petition->greeting ) ); ?>" size="40" maxlength="80" type="text" />
-						</div>
-					</div>
 
 					<label for="petition_message"><?php _e( 'Petition Message', 'dk_speakup' ); ?></label>
 					<textarea name="petition_message" id="petition_message" rows="10" cols="80"><?php echo stripslashes( esc_textarea( $petition->petition_message ) ); ?></textarea>
 				</div>
 			</div>
 
-			<div class="postbox closed">
+<!-- 			<div class="postbox closed">
 				<div class="handlediv" title="Click to toggle"><br /></div>
 				<h3 class='hndle'><?php _e( 'Twitter Message', 'dk_speakup' ); ?></h3>
 				<div class="inside">
 					<textarea name="twitter_message" id="twitter_message" rows="2" cols="80"><?php echo stripslashes ( esc_textarea( $petition->twitter_message ) ); ?></textarea>
 					<div id="twitter-counter"></div>
 				</div>
-			</div>
+			</div> -->
 
 
 			<div class="postbox closed">
 				<div class="handlediv" title="Click to toggle"><br /></div>
-				<h3 class='hndle'><?php _e( 'Message for petition subscribers', 'dk_speakup' ); ?></h3>
+				<h3 class='hndle'><?php _e( 'Email for petition subscribers', 'dk_speakup' ); ?></h3>
 				<div class="inside">
 					<div class="dk-speakup-checkbox sends_email">
 						<input type="checkbox" name="user_send_email" id="user_send_email" <?php if ( $petition->user_send_email == true ) echo 'checked="checked"'; ?> />
 						<label for="user_send_email" class="dk-speakup-inline"><?php _e( 'Send an email to people who sign the petition', 'dk_speakup' ); ?></label>
 					</div>
-					<div class="dk-speakup-petition-content">
 
 						<label for="user_sender_email"><?php _e( 'Sender Email', 'dk_speakup' ); ?></label>
 						<input name="user_sender_email" id="user_sender_email" value="<?php echo esc_attr( $petition->user_sender_email ); ?>" size="40" maxlength="300" type="text" />
 
 
-						<div class="dk-speakup-email-headers">
 							<label for="user_subject"><?php _e( 'Email Subject', 'dk_speakup' ); ?></label>
 							<input name="user_subject" id="user_subject" value="<?php echo stripslashes( esc_attr( $petition->user_subject ) ); ?>" size="40" maxlength="80" type="text" />
-						</div>
-					</div>
+						
 
 					<label for="user_html"><?php _e( 'HTML Message', 'dk_speakup' ); ?></label>
 					<textarea name="user_html" id="user_html" rows="10" cols="80"><?php echo stripslashes( esc_textarea( $petition->user_html ) ); ?></textarea>
