@@ -58,7 +58,7 @@ function dk_speakup_menu_icon() {
 	echo '
 		<style type="text/css">
 			#toplevel_page_dk_speakup .wp-menu-image {
-				background: url(' . plugins_url( "speakup-email-petitions/images/icon-emailpetitions-16.png" ) . ') no-repeat 6px 7px !important;
+				background: url(' . plugins_url( "speakup-email-petitions/images/icon-emailpetitions-16.png" ) . ') no-repeat 6px 10px !important;
 			}
 			body.admin-color-classic #toplevel_page_dk_speakup .wp-menu-image {
 				background: url(' . plugins_url( "speakup-email-petitions/images/icon-emailpetitions-16.png" ) . ') no-repeat 6px -41px !important;
