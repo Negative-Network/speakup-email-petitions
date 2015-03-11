@@ -90,14 +90,14 @@
 				</div>
 			</div>
 
-<!-- 			<div class="postbox closed">
+			<div class="postbox closed">
 				<div class="handlediv" title="Click to toggle"><br /></div>
 				<h3 class='hndle'><?php _e( 'Twitter Message', 'dk_speakup' ); ?></h3>
 				<div class="inside">
 					<textarea name="twitter_message" id="twitter_message" rows="2" cols="80"><?php echo stripslashes ( esc_textarea( $petition->twitter_message ) ); ?></textarea>
 					<div id="twitter-counter"></div>
 				</div>
-			</div> -->
+			</div>
 
 
 			<div class="postbox closed">
