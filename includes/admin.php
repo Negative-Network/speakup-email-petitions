@@ -64,10 +64,10 @@ function dk_speakup_menu_icon() {
 				background: url(' . plugins_url( "speakup-email-petitions/images/icon-emailpetitions-16.png" ) . ') no-repeat 6px -41px !important;
 			}
 			#toplevel_page_dk_speakup:hover .wp-menu-image, #toplevel_page_dk_speakup.wp-has-current-submenu .wp-menu-image {
-				background-position: 6px -17px !important;
+				background-position: 6px -15px !important;
 			}
 			body.admin-color-classic #toplevel_page_dk_speakup:hover .wp-menu-image, body.admin-color-classic #toplevel_page_dk_speakup.wp-has-current-submenu .wp-menu-image {
-				background-position: 6px -17px !important;
+				background-position: 6px -15px !important;
 			}
 
 		</style>
