@@ -40,6 +40,7 @@ function dk_speakup_petitiongoal_shortcode( $attr ) {
 	}
 }
 
+
 // register shortcode to display petition form
 add_shortcode( 'emailpetition', 'dk_speakup_emailpetition_shortcode' );
 function dk_speakup_emailpetition_shortcode( $attr ) {
@@ -53,6 +54,7 @@ function dk_speakup_emailpetition_shortcode( $attr ) {
 	$petition = new dk_speakup_Petition();
 	$wpml     = new dk_speakup_WPML();
 	$options  = get_option( 'dk_speakup_options' );
+
 
 
 	//If specific template exists for petition id, we load it
@@ -80,6 +82,16 @@ function dk_speakup_emailpetition_shortcode( $attr ) {
 			$wpml_lang = defined( 'ICL_LANGUAGE_CODE' ) ? ICL_LANGUAGE_CODE : '';
 
 			if ( $petition_exists ) {
+
+				add_action('wp_head', function($petition) use ( $petition ) {
+					echo '<meta property="og:title" content="'.$petition->title.'" />'."\n";
+					echo '<meta property="og:image" content="'.$petition->share_fb_img.'" />'."\n";
+					echo '<meta property="og:description" content="'.$petition->share_fb_desc.'" />'."\n";
+					echo '<meta property="og:url" content="'.get_permalink(  ).'" />'."\n";
+					echo '<meta name="twitter:title" content="'.$petition->title.'" >'."\n";
+					echo '<meta name="twitter:description" content="'.$petition->share_twitter.'" />'."\n";
+					echo '<meta name="twitter:url" content="'.get_permalink(  ).'" />'."\n";
+				});
 
 				$expired = ( $petition->expires == 1 && current_time( 'timestamp' ) >= strtotime( $petition->expiration_date ) ) ? 1 : 0;
 
