@@ -72,7 +72,7 @@ if ( isset( $_REQUEST['csv'] ) && $_REQUEST['csv'] == 'signatures' ) {
 
 		// construct CSV file header row
 		// must use double quotes and separate with tabs
-		$csv = "$firstname	$lastname	$email	$street	$city	$state	$postcode	$country	$custom_field_label	$date	$confirmed	$petition_title	$petitions_id	$email_optin	$custom_message	$language";
+		$csv = "$firstname;$lastname;$email;$street;$city;$state;$postcode;$country;$custom_field_label;$date;$confirmed;$petition_title;$petitions_id;$email_optin;$custom_message;$language";
 		$csv .= "\n";
 
 		// construct CSV file data rows
@@ -99,7 +99,7 @@ if ( isset( $_REQUEST['csv'] ) && $_REQUEST['csv'] == 'signatures' ) {
 			else {
 				$optin = '...';
 			}
-			$csv .=  stripslashes( '"' . $signature->first_name . '"	"' . $signature->last_name . '"	"' . $signature->email . '"	"' . $signature->street_address . '"	"' . $signature->city . '"	"' . $signature->state . '"	"' . $signature->postcode . '"	"' . $signature->country . '"	"' . $signature->custom_field . '"	"' . $signature->date . '"	"' . $confirm . '"	"' . $signature->title . '"	"' . $signature->petitions_id . '"	"' . $optin . '"	"' . $signature->custom_message . '"	"' . $signature->language . '"' );
+			$csv .=  stripslashes( $signature->first_name . ';' . $signature->last_name . ';' . $signature->email . ';' . $signature->street_address . ';' . $signature->city . ';' . $signature->state . ';' . $signature->postcode . ';' . $signature->country . ';' . $signature->custom_field . ';' . $signature->date . ';' . $confirm . ';' . $signature->title . ';' . $signature->petitions_id . ';' . $optin . ';' . $signature->custom_message . ';' . $signature->language . '"' );
 			$csv .= "\n";
 		}
 
