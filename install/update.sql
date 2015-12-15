@@ -16,7 +16,7 @@ ADD COLUMN `user_text` LONGTEXT NULL DEFAULT NULL AFTER `user_subject`,
 ADD COLUMN `user_html` LONGTEXT NULL DEFAULT NULL AFTER `user_text`;
 
 ALTER TABLE `wp_dk_speakup_petitions` 
-ADD COLUMN `user_sender_email` VARCHAR(300) NULL DEFAULT NULL AFTER `user_sender_email`;
+ADD COLUMN `user_sender_email` VARCHAR(300) NULL DEFAULT NULL AFTER `user_send_email`;
 
 ALTER TABLE `wp_dk_speakup_petitions` 
 ADD COLUMN `share_fb_img` TEXT NULL DEFAULT NULL AFTER `user_html`,
