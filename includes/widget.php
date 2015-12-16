@@ -160,7 +160,7 @@ class dk_speakup_petition_widget extends WP_Widget {
 						<div class="dk-speakup-widget-signature-count">
 							<span>' . number_format( $petition->signatures ) . '</span> ' . _n( 'signature', 'signatures', $petition->signatures, 'dk_speakup' ) . '
 						</div>
-						' . dk_speakup_SpeakUp::progress_bar( $petition->goal, $petition->signatures, 150 ) . '
+						' . dk_speakup_SpeakUp::progress_bar( $petition, 150 ) . '
 					</div>';
 			}
 			$petition_widget .= '

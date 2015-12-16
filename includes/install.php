@@ -221,6 +221,13 @@ function dk_speakup_update() {
 			$wpdb->query("SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS");
 		}
 	}
+	
+	// Update to version 3.1
+	if ( version_compare( $installed_version, '3.1', '<' ) == 1 ) {
+		$wpdb->query("ALTER TABLE `".$wpdb->prefix."dk_speakup_petitions` 
+						ADD COLUMN `goal_start` INT(11) NULL AFTER `goal`;
+						");
+	}
 
 	if ( $installed_version != $dk_speakup_version ) {
 

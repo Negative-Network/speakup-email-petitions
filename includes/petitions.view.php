@@ -49,7 +49,7 @@
 				<td class="dk-speakup-right">
 					<?php echo number_format( $petition->goal ); ?>
 					<div class="dk_speakup_clear"></div>
-					<?php echo dk_speakup_SpeakUp::progress_bar( $petition->goal, $petition->signatures, 65 ); ?>
+					<?php echo dk_speakup_SpeakUp::progress_bar( $petition, 65 ); ?>
 				</td>
 				<td class="dk-speakup-right" style="vertical-align: middle"><a class="button" href="<?php echo $signatures_url; ?>"><?php _e( 'View Signatures', 'dk_speakup' ); ?></a></td>
 			</tr>

@@ -42,7 +42,11 @@ class dk_speakup_SpeakUp
 	 * @param int $max_width width of the outer progress bar div in pixels
 	 * @return HTML string
 	 */
-	public static function progress_bar( $goal, $signatures, $max_width ) {
+	public static function progress_bar( $petition, $max_width ) {
+
+		$goal = $petition->goal;
+		$signatures = $petition->signatures + $petition->goal_start;
+
 		// determine how wide the internal progress bar should be
 		$multiplier        = $max_width / 100;
 		$percent_complete  = ( $goal != 0 ) ? floor( ( $signatures / $goal ) * 100 ) : 0;

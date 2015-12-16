@@ -194,6 +194,10 @@
 								<label for="goal"><?php _e( 'Goal', 'dk_speakup'); ?>:</label>
 								<input id="goal" name="goal" value="<?php echo esc_attr( $petition->goal ); ?>" size="8" maxlength="8" type="text" />
 							</div>
+							<div class="dk-speakup-goal-start dk-speakup-subsection <?php if ( $petition->goal < 1 ) echo 'dk-speakup-hidden'; ?>">
+								<label for="goal-start"><?php _e( 'Goal Start', 'dk_speakup'); ?>:</label>
+								<input id="goal-start" name="goal_start" value="<?php echo esc_attr( $petition->goal_start ); ?>" size="8" maxlength="8" type="text" />
+							</div>
 						</div>
 
 						<!-- Expiration Date -->

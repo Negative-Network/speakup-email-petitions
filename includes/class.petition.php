@@ -17,6 +17,7 @@ class dk_speakup_Petition
 	public $expiration_date = '0000-00-00 00:00:00';
 	public $created_date;
 	public $goal = 0;
+	public $goal_start = 0;
 	public $is_editable = 0;
 	public $sends_email = 1;
 	public $twitter_message;
@@ -107,6 +108,7 @@ class dk_speakup_Petition
 			'expiration_date'       => $this->expiration_date,
 			'created_date'          => $this->created_date,
 			'goal'                  => $this->goal,
+			'goal_start'            => $this->goal_start,
 			'sends_email'           => $this->sends_email,
 			'twitter_message'       => $this->twitter_message,
 			'requires_confirmation' => $this->requires_confirmation,
@@ -284,6 +286,13 @@ class dk_speakup_Petition
 			else {
 				$this->goal = 0;
 			}
+
+			if ( isset( $_POST['goal_start'] ) ) {
+				$this->goal_start = $_POST['goal_start'];
+			}
+			else {
+				$this->goal_start = 0;
+			}
 		}
 		if ( isset( $_POST['expires'] ) ) {
 			$this->expires = 1;
@@ -401,6 +410,7 @@ class dk_speakup_Petition
 			 'expires'               => $this->expires,
 			 'expiration_date'       => $this->expiration_date,
 			 'goal'                  => $this->goal,
+			 'goal_start'            => $this->goal_start,
 			 'sends_email'           => $this->sends_email,
 			 'twitter_message'       => $this->twitter_message,
 			 'requires_confirmation' => $this->requires_confirmation,
@@ -454,6 +464,7 @@ class dk_speakup_Petition
 		$this->expiration_date       = $petition->expiration_date;
 		$this->created_date          = $petition->created_date;
 		$this->goal                  = $petition->goal;
+		$this->goal_start            = $petition->goal_start;
 		$this->sends_email           = $petition->sends_email;
 		$this->twitter_message       = $petition->twitter_message;
 		$this->requires_confirmation = $petition->requires_confirmation;

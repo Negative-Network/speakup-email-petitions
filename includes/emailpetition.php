@@ -13,7 +13,7 @@ function dk_speakup_signaturescount_shortcode( $attr ) {
 	
 	$petition_exists = $petition->retrieve( $id );
 	if ( $petition_exists ) {
-		return (int) $petition->signatures;
+		return (int) $petition->goal_start + (int) $petition->signatures;
 	}
 	else {
 		return 0;
@@ -222,7 +222,7 @@ function dk_speakup_emailpetition_shortcode( $attr ) {
 								<div class="dk-speakup-signature-count">
 									<span>' . number_format( $petition->signatures ) . '</span> ' . _n( 'signature', 'signatures', $petition->signatures, 'dk_speakup' ) . '
 								</div>
-								' . dk_speakup_SpeakUp::progress_bar( $petition->goal, $petition->signatures, $progress_width ) . '
+								' . dk_speakup_SpeakUp::progress_bar( $petition, $progress_width ) . '
 							</div>';
 					}
 					$petition_form .= '
@@ -251,7 +251,7 @@ function dk_speakup_emailpetition_shortcode( $attr ) {
 								<div class="dk-speakup-signature-count">
 									<span>' . number_format( $petition->signatures ) . '</span> ' . _n( 'signature', 'signatures', $petition->signatures, 'dk_speakup' ) . '
 								</div>
-								' . dk_speakup_SpeakUp::progress_bar( $petition->goal, $petition->signatures, $progress_width ) . '
+								' . dk_speakup_SpeakUp::progress_bar( $petition, $progress_width ) . '
 							</div>
 						</div>';
 				}
