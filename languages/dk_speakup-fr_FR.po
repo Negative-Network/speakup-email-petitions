@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: SpeakUp! Email Petitions\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-03-20 07:21-0700\n"
-"PO-Revision-Date: 2013-03-20 07:22-0700\n"
-"Last-Translator: Kreg <Wallace>\n"
+"PO-Revision-Date: 2016-02-08 15:03+0100\n"
+"Last-Translator: Pierre Blarre <pierre@negative-network.com>\n"
 "Language-Team: DesignKode <speakup@designkode.com>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "_ex;esc_attr_x;_n;_nx;_n_noop\n"
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: speakup-email-petitions.php:61
@@ -752,7 +752,7 @@ msgstr "Votre signature a été ajouté."
 
 #: includes/install.php:67
 msgid "This petition has already been signed using your email address."
-msgstr "Cette pétition a déjà été signé en utilisant votre adresse email."
+msgstr "Cette pétition a déjà été signée en utilisant votre adresse email."
 
 #: includes/install.php:68
 msgid "Share this with your friends:"

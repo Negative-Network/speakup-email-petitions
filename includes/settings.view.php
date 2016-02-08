@@ -40,7 +40,7 @@
 				<tr valign="top">
 					<th scope="row"><label for="success_message"><?php _e( 'Success Message', 'dk_speakup' ); ?></label></th>
 					<td>
-						<textarea name="success_message" id="success_message" cols="80" rows="2"><?php echo $the_settings->success_message; ?></textarea>
+						<textarea name="success_message" id="success_message" cols="80" rows="2"><?php echo __( "Thank you", "dk_speakup" ); ?></textarea>
 						<br /><strong><?php _e( 'Accepted variables:', 'dk_speakup' ); ?></strong> %first_name% &nbsp; %last_name%
 						<br /><strong><?php _e( 'Accepted tags:', 'dk_speakup' ); ?></strong> &lt;a&gt; &lt;em&gt; &lt;strong> &lt;p&gt;
 					</td>
@@ -55,7 +55,7 @@
 				</tr>
 				<tr valign="top">
 					<th scope="row"><label for="already_signed_message"><?php _e( 'Already Signed Message', 'dk_speakup' ); ?></label></th>
-					<td><input value="<?php echo esc_attr( $the_settings->already_signed_message ); ?>" name="already_signed_message" id="already_signed_message" type="text" class="regular-text" /></td>
+					<td><input value="<?php echo esc_attr( __( "This petition has already been signed using your email address.", "dk_speakup") ); ?>" name="already_signed_message" id="already_signed_message" type="text" class="regular-text" /></td>
 				</tr>
 				<tr valign="top">
 					<th scope="row"><?php _e( 'Opt-in Default', 'dk_speakup' ); ?></th>
