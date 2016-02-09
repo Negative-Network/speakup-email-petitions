@@ -67,4 +67,15 @@ function dk_speakup_meta_links( $links, $file ) {
 	return $links;
 }
 
+// add Unyson framework support
+function _filter_plugin_awesome_extensions($locations) {
+
+    $locations[ dirname(__FILE__) . '/unyson-framework/extensions' ]
+    =
+    plugin_dir_url( __FILE__ ) . 'unyson-framework/extensions';
+
+    return $locations;
+}
+add_filter('fw_extensions_locations', '_filter_plugin_awesome_extensions');
+
 ?>
