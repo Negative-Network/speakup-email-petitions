@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: SpeakUp! Email Petitions\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-03-20 07:21-0700\n"
-"PO-Revision-Date: 2016-02-18 15:18+0100\n"
+"PO-Revision-Date: 2016-02-19 13:34+0100\n"
 "Last-Translator: Pierre Blarre <pierre@negative-network.com>\n"
 "Language-Team: DesignKode <speakup@designkode.com>\n"
 "Language: fr_FR\n"
@@ -752,7 +752,7 @@ msgstr "Votre signature a bien été enregistrée."
 
 #: includes/install.php:67
 msgid "This petition has already been signed using your email address."
-msgstr "Cette pétition a déjà été signée en utilisant votre adresse email."
+msgstr "Cet appel à soutien a déjà été signé avec cet adresse e-mail."
 
 #: includes/install.php:68
 msgid "Share this with your friends:"
