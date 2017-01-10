@@ -19,7 +19,6 @@ function dk_speakup_addnew_page() {
 		case 'create' :
 			// security: ensure user has intention
 			check_admin_referer( 'dk_speakup-create_petition' );
-
 			$petition->poppulate_from_post();
 			$petition->create();
 			$wpml->register_petition( $petition );
