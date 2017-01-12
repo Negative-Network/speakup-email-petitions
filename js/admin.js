@@ -108,10 +108,11 @@ jQuery( document ).ready( function( $ ) {
 				$( '#dk-speakup-edit-petition #email_subject' ).addClass( 'dk-speakup-error' );
 				errors ++;
 			}
-		}
-		if ( message === '' ) { // must include petition message
-			$( '#dk-speakup-edit-petition #petition_message' ).addClass( 'dk-speakup-error' );
-			errors ++;
+			
+			if ( message === '' ) { // must include petition message
+				$( '#dk-speakup-edit-petition #petition_message' ).addClass( 'dk-speakup-error' );
+				errors ++;
+			}
 		}
 
 		// if "Set signature goal" checkbox is checked
