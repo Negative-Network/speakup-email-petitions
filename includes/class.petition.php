@@ -57,7 +57,7 @@ class dk_speakup_Petition
 
 		// query petitions and number of signatures for each
 		$sql = "
-			SELECT $db_petitions.id, $db_petitions.title, $db_petitions.goal,
+			SELECT $db_petitions.*,
 				COUNT( $db_signatures.id ) AS 'signatures'
 			FROM $db_petitions
 			LEFT JOIN $db_signatures
@@ -65,7 +65,7 @@ class dk_speakup_Petition
 				AND ( $db_signatures.is_confirmed = '' OR $db_signatures.is_confirmed = '1' )
 			GROUP BY $db_petitions.id
 			ORDER BY `id` DESC
-			LIMIT $start, $limit
+			-- LIMIT $start, $limit
 		";
 		$query_results = $wpdb->get_results( $sql );
 
@@ -95,7 +95,14 @@ class dk_speakup_Petition
 	 */
 	public function create()
 	{
-		global $wpdb, $db_petitions;
+		global $wpdb, $db_petitions, $blog_id;
+		$wpdb->show_errors();
+
+		// There's no is_multisite(), so we need to check the ID
+		// This means, that we can't debug the blog with the ID 1 as MU-blog by default
+		// Check if we are on Blog ID#1 and if not, check the defines and add error handling
+		if ( 1 !== $blog_id )
+		    ! defined( 'DIEONDBERROR' ) AND define( 'DIEONDBERROR', true );
 
 		$data = array(
 			'title'                 => $this->title,
@@ -129,7 +136,7 @@ class dk_speakup_Petition
 
 		$format = array( '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s', '%s', '%d', '%d', '%s', '%d', '%d', '%s', '%d', '%s', '%d' );
 
-		$wpdb->insert( $db_petitions, $data, $format );
+		if(! $result = $wpdb->insert( $db_petitions, $data, $format ) ) die('Could not save petition : '.$wpdb->last_query);
 
 		// grab the id of the record we just added to the database
 		$this->id = $wpdb->insert_id;

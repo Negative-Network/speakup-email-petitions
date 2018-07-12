@@ -8,13 +8,16 @@ function dk_speakup_register_widgets() {
 
 class dk_speakup_petition_widget extends WP_Widget {
 
+
 	function dk_speakup_petition_widget() {
 
 		$widget_ops = array(
 			'classname'   => 'dk_speakup_widget',
 			'description' => __( 'Display a petition form.', 'dk_speakup' )
 		);
-		$this->WP_Widget( 'dk_speakup_petition_widget', 'SpeakUp! Email Petitions', $widget_ops );
+		// $this->WP_Widget( 'dk_speakup_petition_widget', 'SpeakUp! Email Petitions', $widget_ops );
+
+		$this->__construct('dk_speakup_petition_widget', 'SpeakUp! Email Petitions', $widget_ops );
 
 		// load widget scripts
 		if ( ! is_admin() && is_active_widget( false, false, $this->id_base, true ) ) {

@@ -105,7 +105,7 @@ class dk_speakup_SpeakUp
 	 */
 	public static function pagination( $limit, $count, $page_handle, $current_page, $base_url, $use_form ) {
 		// round up the page count so we get an integer
-		$total_pages = ceil( $count / $limit );
+		$total_pages = $limit > 0?ceil( $count / $limit ):1;
 		// make sure arrows aren't clickable when there are zero signatures
 		if ( $total_pages == 0 ) $total_pages = 1;
 

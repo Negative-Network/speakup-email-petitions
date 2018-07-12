@@ -5,52 +5,76 @@ function dk_speakup_install() {
 
 	global $wpdb, $db_petitions, $db_signatures, $dk_speakup_version;
 
+	// $db_petitions = 'wp_3_dk_speakup_petitions';
+
 	dk_speakup_translate();
 
 	$sql_create_tables = "
-		CREATE TABLE `$db_petitions` (
-			`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-			`title` TEXT CHARACTER SET utf8 NOT NULL,
-			`target_email` VARCHAR(300) CHARACTER SET utf8 NOT NULL,
-			`email_subject` VARCHAR(200) CHARACTER SET utf8 NOT NULL,
-			`greeting` VARCHAR(200) CHARACTER SET utf8 NOT NULL,
-			`petition_message` LONGTEXT CHARACTER SET utf8 NOT NULL,
-			`address_fields` VARCHAR(200) CHARACTER SET utf8 NOT NULL,
-			`expires` CHAR(1) BINARY NOT NULL,
-			`expiration_date` DATETIME NOT NULL,
-			`created_date` DATETIME NOT NULL,
-			`goal` INT(11) NOT NULL,
-			`sends_email` CHAR(1) BINARY NOT NULL,
-			`twitter_message` VARCHAR(120) CHARACTER SET utf8 NOT NULL,
-			`requires_confirmation` CHAR(1) BINARY NOT NULL,
-			`return_url` VARCHAR(200) CHARACTER SET utf8 NOT NULL,
-			`displays_custom_field` CHAR(1) BINARY NOT NULL,
-			`custom_field_label` VARCHAR(200) CHARACTER SET utf8 NOT NULL,
-			`displays_optin` CHAR(1) BINARY NOT NULL,
-			`optin_label` VARCHAR(200) CHARACTER SET utf8 NOT NULL,
-			`is_editable` CHAR(1) BINARY NOT NULL,
-			UNIQUE KEY  (`id`)
-		);
+	
+        CREATE TABLE `$db_petitions` (
+        `id` bigint(20) unsigned NOT NULL,
+          `title` text NOT NULL,
+          `target_email` varchar(300) NOT NULL,
+          `email_subject` varchar(200) NOT NULL,
+          `greeting` varchar(200) NOT NULL,
+          `petition_message` longtext NOT NULL,
+          `address_fields` varchar(200) NOT NULL,
+          `expires` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+          `expiration_date` datetime NOT NULL,
+          `created_date` datetime NOT NULL,
+          `goal` int(11) NOT NULL,
+          `goal_start` int(11) DEFAULT NULL,
+          `sends_email` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+          `twitter_message` varchar(120) NOT NULL,
+          `requires_confirmation` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+          `return_url` varchar(200) NOT NULL,
+          `displays_custom_field` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+          `custom_field_label` varchar(200) NOT NULL,
+          `displays_optin` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+          `optin_label` varchar(200) NOT NULL,
+          `is_editable` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+          `petition_before_form` text,
+          `petition_after_form` text,
+          `user_send_email` tinyint(1) DEFAULT '0',
+          `user_sender_email` varchar(300) DEFAULT NULL,
+          `user_subject` tinytext,
+          `user_text` longtext,
+          `user_html` longtext,
+          `share_fb_img` text,
+          `share_fb_title` tinytext,
+          `share_fb_desc` text,
+          `share_twitter` tinytext,
+          `share_email_subject` tinytext,
+          `share_email_body` text
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+        ALTER TABLE `$db_petitions`
+         ADD UNIQUE KEY `id` (`id`), ADD UNIQUE KEY `id_2` (`id`), ADD UNIQUE KEY `id_3` (`id`), ADD UNIQUE KEY `id_4` (`id`);
+
 		CREATE TABLE `$db_signatures` (
-			`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-			`petitions_id` BIGINT(20) NOT NULL,
-			`first_name` VARCHAR(200) CHARACTER SET utf8 NOT NULL,
-			`last_name` VARCHAR(200) CHARACTER SET utf8 NOT NULL,
-			`email` VARCHAR(200) CHARACTER SET utf8 NOT NULL,
-			`street_address` VARCHAR(200) CHARACTER SET utf8 NOT NULL,
-			`city` VARCHAR(200) CHARACTER SET utf8 NOT NULL,
-			`state` VARCHAR(200) CHARACTER SET utf8 NOT NULL,
-			`postcode` VARCHAR(200) CHARACTER SET utf8 NOT NULL,
-			`country` VARCHAR(200) CHARACTER SET utf8 NOT NULL,
-			`custom_field` VARCHAR(400) CHARACTER SET utf8 NOT NULL,
-			`optin` CHAR(1) BINARY NOT NULL,
-			`date` DATETIME NOT NULL,
-			`confirmation_code` VARCHAR(32) NOT NULL,
-			`is_confirmed` CHAR(1) BINARY NOT NULL,
-			`custom_message` LONGTEXT CHARACTER SET utf8 NOT NULL,
-			`language` VARCHAR(10) CHARACTER SET utf8 NOT NULL,
-			UNIQUE KEY  (`id`)
-		);";
+		`id` bigint(20) unsigned NOT NULL,
+		  `petitions_id` bigint(20) NOT NULL,
+		  `first_name` varchar(200) NOT NULL,
+		  `last_name` varchar(200) NOT NULL,
+		  `email` varchar(200) NOT NULL,
+		  `street_address` varchar(200) NOT NULL,
+		  `city` varchar(200) NOT NULL,
+		  `state` varchar(200) NOT NULL,
+		  `postcode` varchar(200) NOT NULL,
+		  `country` varchar(200) NOT NULL,
+		  `custom_field` varchar(400) NOT NULL,
+		  `optin` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+		  `date` datetime NOT NULL,
+		  `confirmation_code` varchar(32) NOT NULL,
+		  `is_confirmed` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+		  `custom_message` longtext NOT NULL,
+		  `language` varchar(10) NOT NULL
+		) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+		ALTER TABLE `$db_signatures`
+		 ADD UNIQUE KEY `id` (`id`), ADD UNIQUE KEY `id_2` (`id`), ADD UNIQUE KEY `id_3` (`id`), ADD UNIQUE KEY `id_4` (`id`);
+
+	";
 
 	// create database tables
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
@@ -215,6 +239,10 @@ function dk_speakup_update() {
 
 			$wpdb->query("ALTER TABLE `".$wpdb->prefix."dk_speakup_petitions` 
 							ADD COLUMN `share_fb_title` TINYTEXT NULL DEFAULT NULL AFTER `share_fb_img`;");
+			
+			$wpdb->query("ALTER TABLE `".$wpdb->prefix."dk_speakup_petitions` 
+							ADD COLUMN `goal_start` INT(11) NULL AFTER `goal`;
+							");
 
 			$wpdb->query("SET SQL_MODE=@OLD_SQL_MODE");
 			$wpdb->query("SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS");
