@@ -83,7 +83,7 @@ function dk_speakup_emailpetition_shortcode( $attr ) {
 
 			if ( $petition_exists ) {
 
-				add_action('wp_head', function($petition) use ( $petition ) {
+				add_action('wp_head', function($petition)  {
 					echo '<meta property="og:title" content="'.$petition->title.'" />'."\n";
 					echo '<meta property="og:image" content="'.$petition->share_fb_img.'" />'."\n";
 					echo '<meta property="og:description" content="'.$petition->share_fb_desc.'" />'."\n";
