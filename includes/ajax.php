@@ -101,4 +101,26 @@ function dk_speakup_paginate_signaturelist() {
 	die();
 }
 
+add_action( 'wp_ajax_dk_speakup_signaturecount', 'dk_speakup_signaturecount' );
+add_action( 'wp_ajax_nopriv_dk_speakup_signaturecount', 'dk_speakup_signaturecount' );
+function dk_speakup_signaturecount() {
+	include_once( 'class.petition.php' );
+	$petition = new dk_speakup_Petition();
+
+	$id = 1; // default
+	if ( isset( $attr['id'] ) && is_numeric( $attr['id'] ) ) {
+		$id = $attr['id'];
+	}
+	
+	$petition_exists = $petition->retrieve( $id );
+	if ( $petition_exists ) {
+		echo (int) $petition->goal_start + (int) $petition->signatures;
+	}
+	else {
+		echo 0;
+	}
+	// end AJAX processing
+	die();
+}
+
 ?>
